@@ -1,0 +1,58 @@
+@use './../../../assets/abstracts/index' as *;
+
+$width:80vw;
+
+.chat-box{
+  max-height: 60vh;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: $secondary;
+  font-size: 19px;
+  letter-spacing: 2px;
+
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+}
+.chat{
+display: flex;
+flex-direction: column;
+}
+
+.chat-header{
+  width:400px;
+display: flex;
+align-items: flex-end;
+z-index: 10;
+
+h5{
+    margin-left: 10px;
+  }
+}
+.userImg{
+@include rounder(2.5rem);
+}
+
+.message{
+  width:40vw;
+  min-height: 1.5rem;
+  max-width: $width;
+  margin-bottom: 5vh;
+  padding: 8px;
+
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  background-color: white;
+  box-shadow:0px 1px 2px  rgba(0, 0, 0, 0.308), 0px -20px whitesmoke;
+  // word-wrap: break-word;
+  // word-break: keep-all;
+  box-sizing:content-box;
+
+
+}
+
+.my-chat{
+  box-shadow: 0px -20px rgb(255, 221, 190);
+}

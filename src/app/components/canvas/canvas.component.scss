@@ -1,0 +1,73 @@
+@use './../../../assets/abstracts/index' as *;
+
+
+
+
+canvas{
+  background-color:rgb(249, 249, 249);
+     box-shadow : 0px 5px 10px rgba(0, 0, 0, 0.075)
+}
+
+.color-wheel{
+ @include rounder(2rem);
+ background-color:rgb(255, 255, 255);
+position: relative;
+box-shadow: 0px 5px 10px  rgba(202, 202, 182, 0.664);
+label{
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     transform: translate(-50%,-50%);
+
+     .color{
+      @include rounder(1.5rem);
+     }
+ }
+}
+
+.tools{
+  position: fixed;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%,0);
+  display: flex;
+  height: 5rem;
+  align-items: flex-end;
+
+  #color-picker{
+    width:0px;
+    visibility: hidden;
+  }
+
+  .pencil{
+    height:2rem;
+    background-color:azure;
+  }
+  .clear-canvas{
+    width: 2rem;
+    height: 2rem;
+    background-color:cadetblue;
+  }
+
+  .erasers{
+    display: flex;
+    justify-content: space-evenly;
+  align-items: flex-end;
+
+
+    .eraser{
+      background-color: rgb(134, 112, 112);
+    }
+    .small-eraser{
+      @include rounder(25px);
+    }
+    .medium-eraser{
+      @include rounder(30px);
+    }
+    .large-eraser{
+      @include rounder(35px);
+    }
+  }
+
+}
+

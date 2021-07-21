@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "doodle-doo-app": {
+      "hosting": {
+        "doodle": [
+          "doodle-doo-app"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+<div class="chat-box">
+  <div class="chat" *ngFor="let chat of chats; let i = index">
+    <div class="chat-header">
+      <img src="{{ userImg }}" alt="{{ userImgDesc }}" class="userImg" />
+      <h5>{{ chat.sender }}</h5>
+    </div>
+    <div class="message {{ chat.sender == userName ? 'my-chat' : '' }}">
+      <h4>{{ chat.message }}</h4>
+    </div>
+  </div>
+</div>

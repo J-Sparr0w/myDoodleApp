@@ -1,0 +1,24 @@
+
+ <canvas #drawArea
+ (window:resize)="setSize()"
+ (mousedown)="startDrawing($event)"
+ (mouseup)="finishDrawing()"
+ (mouseleave)="finishDrawing()"
+ >
+</canvas>
+
+<div class="tools">
+    <div class="color-wheel">
+        <label for="color-picker" class="color-label"> <div class="color" [ngStyle]="{'background': colorPicker.value }" ></div></label>
+        <input type="color" id="color-picker" name="colorPicker" #colorPicker (input)="selectColor(colorPicker.value,10)">
+    </div>
+    <div class="clear-canvas" (click)="clearCanvas()">clear</div>
+    <div class="pencil" (click)="selectColor(colorPicker.value,10)" >pencil</div>
+    <div ngClass="erasers" >
+      <div class="small-eraser eraser" (click)="selectColor('#ffffff',20)"></div>
+      <div class="medium-eraser eraser" (click)="selectColor('#ffffff',35)"></div>
+      <div class="large-eraser eraser" (click)="selectColor('#ffffff',50)"></div>
+    </div>
+</div>
+
+<app-chat></app-chat>
