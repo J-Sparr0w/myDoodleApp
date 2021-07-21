@@ -18,6 +18,10 @@ export class ChatComponent implements OnInit {
     {
       sender: "someone",
       message:"lorem12 "
+    },
+    {
+      sender: 'Another person',
+      message: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Explicabo id quaerat aut ipsa atque aliquid?"
     }
   ];
   userName = this.chatService.user.name;

@@ -1,9 +1,10 @@
 @use './../../../assets/abstracts/index' as *;
 
-$width:80vw;
+$width: 80vw;
 
-.chat-box{
+.chat-box {
   max-height: 60vh;
+  max-width: 80vw;
 
   display: flex;
   flex-direction: column;
@@ -15,28 +16,38 @@ $width:80vw;
   overflow-x: hidden;
   overflow-y: scroll;
 
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(66, 66, 66);
+    border-radius: 10px;
+  }
 }
-.chat{
-display: flex;
-flex-direction: column;
+.chat {
+  display: flex;
+  flex-direction: column;
 }
 
-.chat-header{
-  width:400px;
-display: flex;
-align-items: flex-end;
-z-index: 10;
+.chat-header {
+  width: 400px;
+  display: flex;
+  align-items: flex-end;
+  z-index: 10;
 
-h5{
+  h5 {
     margin-left: 10px;
   }
 }
-.userImg{
-@include rounder(2.5rem);
+.userImg {
+  @include rounder(2.5rem);
 }
 
-.message{
-  width:40vw;
+.message {
+  width: 40vw;
   min-height: 1.5rem;
   max-width: $width;
   margin-bottom: 5vh;
@@ -45,14 +56,12 @@ h5{
   border-radius: 10px;
   border-top-left-radius: 0px;
   background-color: white;
-  box-shadow:0px 1px 2px  rgba(0, 0, 0, 0.308), 0px -20px whitesmoke;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.308), 0px -20px whitesmoke;
   // word-wrap: break-word;
   // word-break: keep-all;
-  box-sizing:content-box;
-
-
+  box-sizing: content-box;
 }
 
-.my-chat{
+.my-chat {
   box-shadow: 0px -20px rgb(255, 221, 190);
 }
