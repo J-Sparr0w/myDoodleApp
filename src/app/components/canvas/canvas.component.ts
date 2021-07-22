@@ -11,28 +11,35 @@ import { interval } from 'rxjs';
 export class CanvasComponent implements AfterViewInit {
 
   @ViewChild('drawArea') canvas!: ElementRef<HTMLCanvasElement>;
+
   cx: any;
   touchPoints = navigator.maxTouchPoints;
   isDrawing = false;
   color = '#000';
   line_width = 8;
+  canvasImg = [""];
 
 
   constructor(private renderer:Renderer2) { }
 
   ngAfterViewInit() {
-    this.cx = this.canvas.nativeElement.getContext('2d');
+    this.cx = this.canvas.nativeElement.getContext('2d',{alpha:false});
     this.setSize();
-
-
+    this.cx.imageSmoothingEnabled = false;
+    console.log(this.cx);
     /*
     Setting Up rxjs intervals to convert and update the image data to the database an
     */
-    // interval(1000).pipe()
-    //   .subscribe(() => {
-    //   const canvasImg = this.canvas.nativeElement.toDataURL();
-    //   console.log(canvasImg);
-    // })
+    interval(100).pipe()
+      .subscribe(() => {
+        const canvasURI = this.canvas.nativeElement.toDataURL("image/png");
+
+        if (this.canvasImg[this.canvasImg.length - 1] == canvasURI)
+        return;
+
+        this.canvasImg.push(canvasURI);
+        // this.canImg.nativeElement.src = canvasImg;
+      })
 
 
 
@@ -91,6 +98,9 @@ export class CanvasComponent implements AfterViewInit {
   setSize() {
     this.cx.canvas.height = window.innerHeight / 1.5;
     this.cx.canvas.width = window.innerWidth / 1.5;
+
+    this.cx.fillStyle = "#FFF";
+    this.cx.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
   }
 
   offset(X:number,Y:number) {
@@ -100,8 +110,8 @@ export class CanvasComponent implements AfterViewInit {
     y = Y-this.canvas.nativeElement.offsetTop;
 
     /*
+    if normalising is required
     let bounds = this.canvas.nativeElement.getBoundingClientRect();
-    if normalising required
     x /= bounds.width;
     y /= bounds.height;
 
@@ -127,7 +137,6 @@ export class CanvasComponent implements AfterViewInit {
     this.cx.lineWidth = this.line_width;
     this.cx.lineCap = "round";
     this.cx.lineJoin = "round";
-    this.cx.imageSmoothingEnabled = false;
     this.cx.strokeStyle = this.color;
 
   }
@@ -139,8 +148,6 @@ export class CanvasComponent implements AfterViewInit {
 
     this.cx.lineTo(x, y);
     this.cx.stroke();
-    this.cx.beginPath();
-    this.cx.moveTo(x, y);
 
   }
 
@@ -158,6 +165,7 @@ export class CanvasComponent implements AfterViewInit {
   selectColor(col: string,size?:number) {
     console.log(col);
     this.color = col;
+
     if (size)
       this.line_width = size;
     else
@@ -165,8 +173,7 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   clearCanvas() {
-    this.cx.clearRect(0, 0, this.cx.canvas.width, this.cx.canvas.height);
-    this.cx.beginPath();
+    this.cx.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
   }
 
   ngOnDestroy() {

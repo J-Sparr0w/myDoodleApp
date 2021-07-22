@@ -1,39 +1,16 @@
 @use './../../../assets/abstracts/index' as *;
 
-$width: 80vw;
-
-.chat-box {
-  max-height: 60vh;
-  max-width: 80vw;
-
-  display: flex;
-  flex-direction: column;
-
-  font-family: $secondary;
-  font-size: 19px;
-  letter-spacing: 2px;
-
-  overflow-x: hidden;
-  overflow-y: scroll;
 
 
-  &::-webkit-scrollbar {
-    width: 8px;
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: rgb(66, 66, 66);
-    border-radius: 10px;
-  }
-}
 .chat {
+  width: 20vw;
   display: flex;
   flex-direction: column;
 }
 
 .chat-header {
   width: 400px;
+  width: 100%;
   display: flex;
   align-items: flex-end;
   z-index: 10;
@@ -43,13 +20,16 @@ $width: 80vw;
   }
 }
 .userImg {
-  @include rounder(2.5rem);
+  // @include rounder(2.5rem);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
 }
 
 .message {
-  width: 40vw;
+
   min-height: 1.5rem;
-  max-width: $width;
   margin-bottom: 5vh;
   padding: 8px;
 

@@ -1,0 +1,45 @@
+@use './../../../assets/abstracts/index' as *;
+
+
+.container{
+  display: flex;
+
+  height:67vh;
+
+  overflow-x: hidden;
+  overflow-y:hidden ;
+
+  align-items: center;
+}
+
+.chat-box {
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  font-family: $secondary;
+  font-size: 19px;
+  letter-spacing: 2px;
+
+  box-sizing: border-box;
+
+
+  overflow-y: scroll;
+
+  flex-shrink: 1;
+  flex-grow: 1;
+
+  // flex-basis: 100%;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(66, 66, 66);
+    border-radius: 10px;
+  }
+}
+

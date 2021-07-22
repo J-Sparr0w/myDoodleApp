@@ -9,4 +9,9 @@
 html,body{
   margin: 0px;
   font-family: $primary;
+  box-sizing: border-box;
+}
+body
+{
+background-image: url("./assets/images/dotsBg.png");
 }

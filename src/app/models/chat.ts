@@ -1,4 +1,5 @@
 export interface Chat {
   sender: string,
-  message:string
+  message: string,
+  senderImg:string
 }

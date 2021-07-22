@@ -13,11 +13,12 @@
         <input type="color" id="color-picker" name="colorPicker" #colorPicker (input)="selectColor(colorPicker.value,10)">
     </div>
     <div class="clear-canvas" (click)="clearCanvas()">clear</div>
-    <div class="pencil" (click)="selectColor(colorPicker.value,10)" >pencil</div>
+    <div class="pencil-div" (click)="selectColor(colorPicker.value,10)" >
+<img src="./../../../assets/icons/pencil_icon.svg" alt="">
+    </div>
     <div ngClass="erasers" >
       <div class="small-eraser eraser" (click)="selectColor('#ffffff',20)"></div>
       <div class="medium-eraser eraser" (click)="selectColor('#ffffff',35)"></div>
       <div class="large-eraser eraser" (click)="selectColor('#ffffff',50)"></div>
     </div>
 </div>
-<app-chat></app-chat>

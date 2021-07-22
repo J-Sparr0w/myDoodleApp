@@ -1,0 +1,38 @@
+@use "./../../../assets/abstracts/index" as *;
+
+
+.create-link{
+  cursor: pointer;
+}
+.join-btn{
+  cursor: pointer;
+}
+.link{
+  display: flex;
+  align-items: center;
+
+#link-span{
+padding: 5px 10px;
+  display: inline-block;
+
+  border-radius: 3px;
+  // background-color: rgb(203, 205, 209);
+  color: $blue;
+  background-color: rgba(255, 226, 213, 0.664);
+}
+}
+.copy-btn{
+  cursor: pointer;
+  svg{
+  width:2rem;
+}
+path{
+  fill:  #959fad;
+}
+&:active{
+  path{
+    fill:  #27374e;
+
+  }
+}
+}

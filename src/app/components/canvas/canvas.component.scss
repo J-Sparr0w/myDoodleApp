@@ -39,9 +39,15 @@ label{
     visibility: hidden;
   }
 
-  .pencil{
-    height:2rem;
-    background-color:azure;
+  .pencil-div{
+    background-color:rgb(255, 196, 107);
+
+    img{
+@include rounder(2.5rem);
+transition: all 300ms ease-out;
+
+
+    }
   }
   .clear-canvas{
     width: 2rem;
