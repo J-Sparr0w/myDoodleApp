@@ -12,6 +12,7 @@ import { ChatService } from './services/chat.service';
 import { RoomComponent } from './components/room/room.component';
 import { HubComponent } from './components/hub/hub.component';
 import { HubService } from './services/hub.service';
+import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HubService } from './services/hub.service';
     ChatComponent,
     RoomComponent,
     HubComponent,
+    AvatarCardComponent,
   ],
   imports: [
     BrowserModule,

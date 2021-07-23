@@ -6,7 +6,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
   styleUrls: ['./hub.component.scss']
 })
 export class HubComponent implements OnInit {
-  linkId = "";
+  linkId?:string ;
   fullLink = "www.linkid.com/"
 
   constructor() { }
@@ -17,6 +17,9 @@ export class HubComponent implements OnInit {
 
   createLink(parts:number) {
 
+    if (this.linkId)
+      return;
+    
     this.fullLink = "www.linkid.com/";
     const stringArr = [];
 
@@ -30,9 +33,13 @@ export class HubComponent implements OnInit {
   }
 
   copyLink() {
-    navigator.clipboard.writeText(this.linkId)
+    if (!this.linkId)
+      return;
+
+      navigator.clipboard.writeText(this.linkId)
       .then(
-      ()=>console.log("copied")
-    )
+        ()=>console.log("copied")
+        )
+
   }
 }
