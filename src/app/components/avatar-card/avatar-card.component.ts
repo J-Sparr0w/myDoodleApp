@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Avatars } from 'src/app/models/avatars/avatars';
+
 
 @Component({
   selector: 'app-avatar-card',
@@ -9,7 +10,9 @@ import { Avatars } from 'src/app/models/avatars/avatars';
 export class AvatarCardComponent implements OnInit {
   avatars = [...Avatars];
   hasSelectedAvatar = false;
-  selectedAvatar?:string;
+  selectedAvatar?: string;
+
+  @Output() selectionMade = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -21,6 +24,7 @@ export class AvatarCardComponent implements OnInit {
 
     this.hasSelectedAvatar = true;
     this.selectedAvatar = avatar;
+    this.selectionMade.emit(true);
     return avatar;
   }
 }

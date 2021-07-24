@@ -8,70 +8,100 @@ canvas{
      box-shadow : 0px 5px 10px rgba(0, 0, 0, 0.075)
 }
 
-.color-wheel{
- @include rounder(2rem);
- background-color:rgb(255, 255, 255);
-position: relative;
-box-shadow: 0px 5px 10px  rgba(202, 202, 182, 0.664);
-label{
-     position: absolute;
-     left: 50%;
-     top: 50%;
-     transform: translate(-50%,-50%);
 
-     .color{
-      @include rounder(1.5rem);
-     }
- }
-}
 
 .tools{
   position: fixed;
+  width: 30vw;
   bottom: 0%;
   left: 50%;
   transform: translate(-50%,0);
   display: flex;
   height: 5rem;
-  align-items: flex-end;
+  align-items: center;
+  background-color: rgb(58, 58, 58);
+  gap:1rem;
+  padding-inline: 1rem;
+
+  .color-wheel{
+    @include rounder(2.5rem);
+    background-color:rgb(255, 255, 255);
+   position: relative;
+   box-shadow: 0px 5px 10px  rgba(94, 94, 94, 0.664);
+    flex-shrink: 0;
+
+
+   label{
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+
+        .color{
+         @include rounder(2.3rem);
+        }
+    }
+   }
+
 
   #color-picker{
     width:0px;
     visibility: hidden;
   }
 
+
+  .clear-canvas{
+    width: 4rem;
+    height: 4rem;
+    background-color:cadetblue;
+    background-image: url("./../../../assets/icons/clear canvas.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+  }
+
+
   .pencil-div{
-    background-color:rgb(255, 196, 107);
+    background-color:rgb(92, 93, 96);
+    width: 4rem;
+    height: 4rem;
+@include flexCenter();
+  flex-shrink: 0;
 
     img{
-@include rounder(2.5rem);
+@include rounder(3rem);
+
 transition: all 300ms ease-out;
-
-
     }
   }
-  .clear-canvas{
-    width: 2rem;
-    height: 2rem;
-    background-color:cadetblue;
-  }
+
+
 
   .erasers{
+    width: 10rem;
     display: flex;
     justify-content: space-evenly;
-  align-items: flex-end;
+  align-items: center;
+    flex-basis: 40%;
 
+  img{
+    @include rounder(2.5rem);
+    transition: all 300ms ease-out;
+        }
 
     .eraser{
-      background-color: rgb(134, 112, 112);
+      background-color: rgb(255, 255, 255);
+      background-image: url("./../../../assets/icons/eraser.jpg");
+      background-size: contain;
     }
     .small-eraser{
-      @include rounder(25px);
+      @include rounder(2rem);
     }
     .medium-eraser{
-      @include rounder(30px);
+      @include rounder(2.5rem);
     }
     .large-eraser{
-      @include rounder(35px);
+      @include rounder(3rem);
     }
   }
 

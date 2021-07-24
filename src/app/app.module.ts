@@ -13,6 +13,7 @@ import { RoomComponent } from './components/room/room.component';
 import { HubComponent } from './components/hub/hub.component';
 import { HubService } from './services/hub.service';
 import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
+import { RoomService } from './services/room.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,12 @@ import { AvatarCardComponent } from './components/avatar-card/avatar-card.compon
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [DoodleService,ChatService,HubService],
+  providers: [
+    DoodleService,
+    ChatService,
+    HubService,
+    RoomService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

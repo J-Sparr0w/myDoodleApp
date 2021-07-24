@@ -1,61 +1,57 @@
 @use "./../../../assets/abstracts/index" as *;
 
-
 //  ! for mobile screens there wiill be no avatar section instead two more buttons will allow users to preview avatarsand maybe implement swipe motions too !!
 
-
-
-.card{
+.card {
   position: relative;
   font-family: $secondary;
   font-size: 1.3rem;
-@include flexCenter(column);
-  width:35vw;
+  @include flexCenter(column);
+  min-width: 22rem;
   height: 85vh;
-  padding-inline:20px;
-  padding-block-start:20px;
+  padding-inline: 20px;
+  padding-block-start: 20px;
 
   box-shadow: 1px 1px 10px #e697914b;
   border-radius: 20px;
 
   background-color: white;
 
-  svg{
-  width: 100%;
-  height: 100%;
-   justify-self: flex-end;
+  svg {
+    width: 100%;
+    height: 100%;
+    justify-self: flex-end;
   }
 
-  h2{
+  h2 {
     margin-block-end: 1rem;
   }
 }
 
 .back-btn {
-position: absolute;
-top: 10px;
-left: 10px;
-z-index: 10;
-svg{
-  width: 2rem;
-}
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+  svg {
+    width: 2rem;
+  }
 }
 
-.avatar-section
-{
+.avatar-section {
   position: relative;
   display: flex;
-padding-inline: 20px;
-padding-block: 20px;
-height: 45vh;
+  padding-inline: 20px;
+  padding-block: 20px;
+  height: 45vh;
 
-flex-wrap: wrap;
+  flex-wrap: wrap;
   justify-content: space-evenly;
 
   background-color: rgba(233, 233, 233, 0.274);
   border-radius: 10px;
 
-  &::after{
+  &::after {
     content: "";
     position: absolute;
     width: 100%;
@@ -65,58 +61,51 @@ flex-wrap: wrap;
   }
 }
 
-.avatar
-{
-background-color: #fff;
+.avatar {
+  margin: 1px;
+  background-color: #fff;
 
   position: relative;
- @include rounder(5rem);
+  @include rounder(5rem);
   user-select: none;
 
- img{
-   @include rounder(5rem);
-}
+  img {
+    @include rounder(5rem);
+  }
 
-  &::before{
+  &::before {
     content: "";
     @include rounder(5rem);
     position: absolute;
     top: -0.1rem;
     left: -0.1rem;
-    transition: border 200ms ;
+    transition: border 200ms;
     box-shadow: 0px 1px rgb(211, 211, 211);
+  }
+
+  &:hover {
+    &::before {
+      content: "";
+      transform: scale(1.01);
+      border: 2px solid black;
     }
+  }
 
-    &:hover{
-
-      &::before{
-        content: "";
-        transform: scale(1.01);
-        border: 2px solid black;
-            }
+  &.selected {
+    &::before {
+      content: "";
+      transform: scale(1.01);
+      border: 2px solid black;
     }
-
-
-    &.selected{
-      &::before{
-        content: "";
-        transform: scale(1.01);
-        border: 2px solid black;
-            }
-    }
-}
-
-
-
-.avatar-preview{
-  display: flex;
-  align-items: center;
-height: 100%;
-  justify-self: flex-end;
-  img{
-    @include rounder(30vh);
   }
 }
 
-
-
+.avatar-preview {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-self: flex-end;
+  img {
+    @include rounder(30vh);
+  }
+}

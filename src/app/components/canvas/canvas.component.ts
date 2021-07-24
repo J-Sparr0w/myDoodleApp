@@ -1,6 +1,6 @@
 import { ElementRef, Renderer2 } from '@angular/core';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { interval } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class CanvasComponent implements AfterViewInit {
   color = '#000';
   line_width = 8;
   canvasImg = [""];
-
+  canvasSubscription?: Subscription;
 
   constructor(private renderer:Renderer2) { }
 
@@ -30,7 +30,7 @@ export class CanvasComponent implements AfterViewInit {
     /*
     Setting Up rxjs intervals to convert and update the image data to the database an
     */
-    interval(100).pipe()
+   this.canvasSubscription= interval(100).pipe()
       .subscribe(() => {
         const canvasURI = this.canvas.nativeElement.toDataURL("image/png");
 
@@ -177,6 +177,6 @@ export class CanvasComponent implements AfterViewInit {
   }
 
   ngOnDestroy() {
-
+    this.canvasSubscription ? this.canvasSubscription.unsubscribe : console.log("no subscription found in canvas component");
   }
 }

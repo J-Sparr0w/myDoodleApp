@@ -1,33 +1,31 @@
 <div class="container">
+  <app-avatar-card (selectionMade)="enableLink($event)"></app-avatar-card>
 
+  <!-- menu -->
+  <div class="menu">
 
-<app-avatar-card></app-avatar-card>
-
-
-<!-- menu -->
-  <div class="menu" >
-
-
+<!-- username selection -->
+    <div class="name-selection">
+      <h2>Enter A Username</h2>
+      <input type="text" name="username" id="username" #username (input)="addUsername(username.value)">
+    </div>
+    <!--  -->
     <!-- link generation -->
-    <div class="create-link" [class.created]="linkId" (click)="createLink(2)">
+    <div
+      [ngClass]="{
+        'create-link': true,
+        enabled: (this.hasSelectedAvatar&&hasSelectedUsername),
+        created: linkId
+      }"
+      (click)="createUID(2)"
+    >
       <h2>Create Game Room</h2>
     </div>
     <!--  -->
 
-    <img src="./../../../assets/icons/arrow.svg" alt="">
-  </div>
-  <!--  -->
-
-
     <!-- link -->
-    <div class="link" *ngIf="linkId">
-
-          <!-- joinbtn -->
-          <div class="join-btn" *ngIf="linkId"><Span>Join</Span></div>
-
-          <!--   -->
-
-      <span #linkRef id='link-span'>{{ fullLink }} </span>
+    <div class="link" >
+      <span #linkRef id="link-span">{{ fullLink }} </span>
       <div class="copy-btn" (click)="copyLink()">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
           <g id="Layer_100" data-name="Layer 100">
@@ -42,7 +40,16 @@
       </div>
     </div>
     <!--  -->
+  </div>
+  <!--  -->
 
+  <div class="join" (click)="joinRoom()">
+    <h3>Invite friends and Join the game room</h3>
 
+    <img src="./../../../assets/icons/arrow.svg" alt="" />
 
- </div>
+    <!-- joinbtn -->
+    <div class="join-btn" *ngIf="linkId"><Span>Join</Span></div>
+    <!--   -->
+  </div>
+</div>
