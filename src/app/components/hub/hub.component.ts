@@ -23,10 +23,14 @@ export class HubComponent implements OnInit {
     this.hasSelectedAvatar = true;
   }
 
+
+
   createUID(parts:number,nameId?:string) {
 
-    if (this.linkId || !this.hasSelectedAvatar)
+    if (!nameId) {
+      if (this.linkId || !this.hasSelectedAvatar)
       return;
+    }
 
       const stringArr = [];
 
@@ -37,13 +41,13 @@ export class HubComponent implements OnInit {
       }
 
     if (nameId) {
-    return this.userId = nameId;
+    return this.userId = stringArr.join('-');
      }
 
     this.fullLink = "www.linkid.com/";
-    this.linkId=stringArr.join('-')
+    this.linkId = stringArr.join('-');
     this.fullLink += this.linkId;
- return  this.hubService.link = this.fullLink;
+ return  this.hubService.docId = this.linkId;
   }
 
   copyLink() {
@@ -56,8 +60,8 @@ export class HubComponent implements OnInit {
         )
     }
 
-  addUsername(value: string) {
-    this.createUID(3, value);
+ addUsername(value: string) {
+     this.createUID(4, value);
 
     this.hubService.user = {
       userId: this.userId,

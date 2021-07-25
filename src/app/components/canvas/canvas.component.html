@@ -25,15 +25,17 @@
     />
   </div>
 <!--  -->
+
+
 <!-- pencil -->
-  <div class="pencil-div" (click)="selectColor(colorPicker.value, 10)">
-    <img src="./../../../assets/icons/pencil_icon.svg" alt="" />
+  <div class="pencil-div" [class.selected]="line_width==10" (click)="selectColor(colorPicker.value, 10)">
   </div>
   <!--  -->
 
   <!-- erasers -->
   <div ngClass="erasers">
-    <div class="small-eraser eraser" (click)="selectColor('#ffffff', 20)"></div>
+    <div class="small-eraser eraser" (click)="selectColor('#ffffff', 20)">
+    </div>
     <div
       class="medium-eraser eraser"
       (click)="selectColor('#ffffff', 35)"

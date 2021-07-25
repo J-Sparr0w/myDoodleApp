@@ -1,6 +1,7 @@
-import { ElementRef, Renderer2 } from '@angular/core';
+import { ElementRef, Input, Renderer2 } from '@angular/core';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
+import { DoodleService } from 'src/app/services/doodle.service';
 
 
 @Component({
@@ -16,13 +17,19 @@ export class CanvasComponent implements AfterViewInit {
   touchPoints = navigator.maxTouchPoints;
   isDrawing = false;
   color = '#000';
-  line_width = 8;
+  line_width = 10;
   canvasImg = [""];
   canvasSubscription?: Subscription;
+  @Input() link!: string;
 
-  constructor(private renderer:Renderer2) { }
+
+  constructor(private renderer: Renderer2,
+  private doodleService:DoodleService) { }
 
   ngAfterViewInit() {
+
+    this.doodleService.linkId = this.link;
+
     this.cx = this.canvas.nativeElement.getContext('2d',{alpha:false});
     this.setSize();
     this.cx.imageSmoothingEnabled = false;
@@ -38,6 +45,7 @@ export class CanvasComponent implements AfterViewInit {
         return;
 
         this.canvasImg.push(canvasURI);
+        this.doodleService.updateDB(canvasURI);
         // this.canImg.nativeElement.src = canvasImg;
       })
 

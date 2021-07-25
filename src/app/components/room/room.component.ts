@@ -8,7 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RoomComponent implements OnInit {
   isCurrentPlayer = true;
+  linkId!: string;
 
+  
   constructor(
     private route:ActivatedRoute
   ) { }
@@ -17,7 +19,6 @@ export class RoomComponent implements OnInit {
     this.route.paramMap.subscribe(
       param => {
         console.log(param);
-        
       }
     )
   }

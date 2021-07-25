@@ -6,7 +6,7 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class HubService {
-  link = "";
+  docId = "";
 
   user: User = {
     userId: "",
@@ -19,7 +19,11 @@ export class HubService {
   joinLink() {
     if (!this.user||!this.user.isHost)
       return;
-    // this.fs.doc(`doodles/${this.link}`).set(this.user);
+    console.log(this.user.userId, this.user.username);
+    // this.fs.collection("doodles").doc(this.docId).set(this.user);
+    // sessionStorage.setItem('isLoggedIn',"true")
+    // sessionStorage.setItem('roomLink',JSON.stringify(this.docId))
+    // sessionStorage.setItem('isLoggedIn',JSON.stringify(true))
     console.log("Room Created");
   }
 }

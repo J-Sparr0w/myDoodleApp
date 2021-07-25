@@ -1,109 +1,218 @@
 @use './../../../assets/abstracts/index' as *;
 
-
-
-
-canvas{
-  background-color:rgb(249, 249, 249);
-     box-shadow : 0px 5px 10px rgba(0, 0, 0, 0.075)
+canvas {
+  background-color: rgb(249, 249, 249);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.075);
 }
 
-
-
-.tools{
+.tools {
   position: fixed;
-  width: 30vw;
+  // width: 30rem;
   bottom: 0%;
   left: 50%;
-  transform: translate(-50%,0);
+  transform: translate(-50%, 0);
   display: flex;
-  height: 5rem;
   align-items: center;
-  background-color: rgb(58, 58, 58);
-  gap:1rem;
-  padding-inline: 1rem;
+  justify-content: space-evenly;
 
-  .color-wheel{
+  height: 5rem;
+
+  background-color: $pink;
+
+  gap: 1rem;
+
+  padding-inline: 1rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  .color-wheel {
     @include rounder(2.5rem);
-    background-color:rgb(255, 255, 255);
-   position: relative;
-   box-shadow: 0px 5px 10px  rgba(94, 94, 94, 0.664);
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    // box-shadow: 0px 5px 10px rgba(94, 94, 94, 0.664);
     flex-shrink: 0;
 
+    label {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
 
-   label{
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%,-50%);
-
-        .color{
-         @include rounder(2.3rem);
-        }
+      .color {
+        @include rounder(2.3rem);
+      }
     }
-   }
+  }
 
-
-  #color-picker{
-    width:0px;
+  #color-picker {
+    width: 0px;
     visibility: hidden;
   }
 
-
-  .clear-canvas{
+  .clear-canvas {
     width: 4rem;
     height: 4rem;
-    background-color:cadetblue;
+    background-color: cadetblue;
     background-image: url("./../../../assets/icons/clear canvas.jpg");
     background-size: contain;
     background-repeat: no-repeat;
     flex-shrink: 0;
+    border-radius: 5px;
   }
 
-
-  .pencil-div{
-    background-color:rgb(92, 93, 96);
+  .pencil-div {
+    position: relative;
     width: 4rem;
     height: 4rem;
-@include flexCenter();
-  flex-shrink: 0;
 
-    img{
-@include rounder(3rem);
+    @include flexCenter();
+    flex-shrink: 0;
 
-transition: all 300ms ease-out;
-    }
-  }
+    border-radius: 5px;
+    // box-shadow: 0px 1px 10px rgba(94, 94, 94, 0.171);
 
+    background-color: $beach;
 
+    transition: border-radius 200ms ease-in-out;
 
-  .erasers{
-    width: 10rem;
-    display: flex;
-    justify-content: space-evenly;
-  align-items: center;
-    flex-basis: 40%;
-
-  img{
-    @include rounder(2.5rem);
-    transition: all 300ms ease-out;
-        }
-
-    .eraser{
-      background-color: rgb(255, 255, 255);
-      background-image: url("./../../../assets/icons/eraser.jpg");
+    &::after{
+      content: "";
+      position: absolute;
+      width: 3rem;
+      height: 3rem;
+      background-image: url("./../../../assets/icons/pencil_icon.svg");
+      background-repeat: no-repeat;
       background-size: contain;
     }
-    .small-eraser{
-      @include rounder(2rem);
+
+
+    &.selected{
+      border-radius: 50%;
     }
-    .medium-eraser{
-      @include rounder(2.5rem);
-    }
-    .large-eraser{
-      @include rounder(3rem);
+    &.selected:active{
+      -webkit-animation: jello-horizontal 0.9s both;
+      animation: jello-horizontal 0.9s both;
     }
   }
 
+  .erasers {
+    width: 10rem;
+    height: 4rem;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    background-color: $beach;
+
+    flex-grow: 1;
+    border-radius: 5px;
+    // box-shadow: 0px 5px 10px rgba(151, 79, 79, 0.664);
+
+    img {
+      @include rounder(2rem);
+      transition: all 300ms ease-out;
+    }
+
+    .eraser {
+      border: 2px solid rgb(58, 58, 58);
+      background-color: rgb(241, 241, 241);
+      // box-shadow: 0px 5px 10px rgba(94, 94, 94, 0.664);
+
+
+&:active{
+	-webkit-animation: jello-horizontal 0.9s both;
+	        animation: jello-horizontal 0.9s both;
+}
+    }
+    .small-eraser {
+      @include rounder(2rem);
+      background-image: url("./../../../assets/icons/eraser.jpg");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .medium-eraser {
+      @include rounder(2.5rem);
+      background-image: url("./../../../assets/icons/eraser.jpg");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+    .large-eraser {
+      @include rounder(3rem);
+      background-image: url("./../../../assets/icons/eraser.jpg");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  }
 }
 
+.jello-horizontal {
+	-webkit-animation: jello-horizontal 0.9s both;
+	        animation: jello-horizontal 0.9s both;
+}
+
+/**
+ * ----------------------------------------
+ * animation jello-horizontal
+ * ----------------------------------------
+ */
+ @-webkit-keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes jello-horizontal {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+            transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+            transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+            transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
