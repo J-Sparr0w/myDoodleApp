@@ -1,12 +1,17 @@
 <div class="container">
-  <div class="doodle-area">
-    <app-canvas *ngIf="isCurrentPlayer" [link]="linkId"></app-canvas>
+  <div class="doodle">
+    <div class="doodle-area">
+      <app-canvas *ngIf="isCurrentPlayer" [link]="linkId"></app-canvas>
+    </div>
+
+    <div class="chat-box">
+      <app-chat></app-chat>
+    </div>
   </div>
 
-  <div class="chat-box">
-    <app-chat></app-chat>
+  <div class="bottom-section">
+    <div class="current-word">
+      <h2 *ngFor="let letter of word">{{ letter }}</h2>
+    </div>
   </div>
 </div>
-
-
-

@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 export class RoomComponent implements OnInit {
   isCurrentPlayer = true;
   linkId!: string;
+  word= ["S","O","M","E","T","H","I","N","G"]
 
-  
   constructor(
     private route:ActivatedRoute
   ) { }

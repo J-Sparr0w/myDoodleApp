@@ -1,11 +1,10 @@
 @use './../../../assets/abstracts/index' as *;
 
-
-
 .chat {
   width: 20vw;
   display: flex;
   flex-direction: column;
+  pointer-events: none;
 }
 
 .chat-header {
@@ -13,7 +12,7 @@
   width: 100%;
   display: flex;
   align-items: flex-end;
-  z-index: 10;
+  z-index: 100;
 
   h5 {
     margin-left: 10px;
@@ -28,7 +27,6 @@
 }
 
 .message {
-
   min-height: 1.5rem;
   margin-bottom: 5vh;
   padding: 8px;
@@ -36,10 +34,12 @@
   border-radius: 10px;
   border-top-left-radius: 0px;
   background-color: white;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.308), 0px -20px whitesmoke;
+  box-shadow: 1px 1px 4px rgba(37, 37, 37, 0.452), 0px -20px $teal;
   // word-wrap: break-word;
   // word-break: keep-all;
   box-sizing: content-box;
+  z-index: 10;
+
 }
 
 .my-chat {

@@ -34,6 +34,7 @@ export class CanvasComponent implements AfterViewInit {
     this.setSize();
     this.cx.imageSmoothingEnabled = false;
     console.log(this.cx);
+
     /*
     Setting Up rxjs intervals to convert and update the image data to the database an
     */
