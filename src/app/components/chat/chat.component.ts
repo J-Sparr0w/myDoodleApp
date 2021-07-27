@@ -47,17 +47,17 @@ export class ChatComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.chatService.getChat().subscribe(
-      (data) => {
-       data.forEach(chat => {
-         this.chats.push(chat);
-         console.log(this.chats);
-        });
-      },
-      err => {
-        console.log(err);
-      }
-    )
+    // this.chatService.getChat().subscribe(
+    //   (data) => {
+    //    data.forEach(chat => {
+    //      this.chats.push(chat);
+    //      console.log(this.chats);
+    //     });
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // )
 
     this.chatMessages.changes.subscribe(
       (changes: QueryList<ElementRef>) => {

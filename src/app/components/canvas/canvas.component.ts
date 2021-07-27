@@ -23,8 +23,10 @@ export class CanvasComponent implements AfterViewInit {
   @Input() link!: string;
 
 
-  constructor(private renderer: Renderer2,
-  private doodleService:DoodleService) { }
+  constructor(
+    private renderer: Renderer2,
+    private doodleService: DoodleService
+  ) { }
 
   ngAfterViewInit() {
 

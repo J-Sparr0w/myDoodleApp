@@ -8,7 +8,7 @@ export class DoodleService {
 
   linkId!: string;
   // private doodle = this.fs.doc(`doodles/${this.linkId}`);
-  private doodle = this.fs.doc("doodles/6474-798a");
+  private doodle = this.fs.doc("doodles/pGFdW3ogObPinYcJG2pD");
 
   constructor(
     private fs:AngularFirestore
@@ -16,8 +16,11 @@ export class DoodleService {
 
   updateDB(dataURI:string) {
     console.log("updateDB");
-    // this.doodle.update({ "src": dataURI });
+    // this.doodle.collection('ImageInfo').add({ src: dataURI });
   }
 
+  // loadDoodle() {
+  //  return this.doodle.collection('ImageInfo').valueChanges();
+  // }
 
 }

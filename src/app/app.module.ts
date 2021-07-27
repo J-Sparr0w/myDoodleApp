@@ -14,6 +14,7 @@ import { HubComponent } from './components/hub/hub.component';
 import { HubService } from './services/hub.service';
 import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
 import { RoomService } from './services/room.service';
+import { FeedbackCanvasComponent } from './components/feedback-canvas/feedback-canvas.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { RoomService } from './services/room.service';
     RoomComponent,
     HubComponent,
     AvatarCardComponent,
+    FeedbackCanvasComponent,
   ],
   imports: [
     BrowserModule,

@@ -73,6 +73,20 @@ z-index: 10;
 
 @include flexCenter();
 
+textarea{
+  position: fixed;
+  bottom: 5rem;
+
+  width:30vw;
+
+  padding: 10px;
+  resize: none;
+
+  border-radius: 20px;
+
+  outline: none;
+}
+
   .current-word {
     display: flex;
     justify-content: space-evenly;

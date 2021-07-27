@@ -17,9 +17,9 @@ export class ChatService {
     private fs:AngularFirestore
   ) { }
 
-  getChat() :Observable<Chat[]>{
-    // return this.chatMessages.valueChanges();
-  }
+  // getChat() :Observable<Chat[]>{
+  //   // return this.chatMessages.valueChanges();
+  // }
 
   updateChat(msg:Chat) {
     // return this.chatMessages.add(msg);

@@ -2,6 +2,7 @@
   <div class="doodle">
     <div class="doodle-area">
       <app-canvas *ngIf="isCurrentPlayer" [link]="linkId"></app-canvas>
+      <app-feedback-canvas *ngIf="!isCurrentPlayer"></app-feedback-canvas>
     </div>
 
     <div class="chat-box">
@@ -13,5 +14,7 @@
     <div class="current-word">
       <h2 *ngFor="let letter of word">{{ letter }}</h2>
     </div>
+    <textarea name="text" id="text" cols="70" rows="3"></textarea>
+
   </div>
 </div>

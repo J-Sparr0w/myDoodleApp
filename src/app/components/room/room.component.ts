@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./room.component.scss']
 })
 export class RoomComponent implements OnInit {
-  isCurrentPlayer = true;
+  isCurrentPlayer = false;
   linkId!: string;
   word= ["S","O","M","E","T","H","I","N","G"]
 
