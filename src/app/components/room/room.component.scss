@@ -22,10 +22,8 @@
   overflow-y: hidden;
 }
 
-
-.doodle-area{
-z-index: 10;
-
+.doodle-area {
+  z-index: 10;
 }
 
 .chat-box {
@@ -35,7 +33,6 @@ z-index: 10;
   right: 0px;
 
   padding-inline: 5px;
-
 
   // background-color: rgb(201, 89, 89);
 
@@ -53,8 +50,6 @@ z-index: 10;
   flex-shrink: 1;
   flex-grow: 1;
 
-
-
   &::-webkit-scrollbar {
     width: 5px;
     background: transparent;
@@ -66,26 +61,56 @@ z-index: 10;
   }
 }
 
+.chat-bar-section {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+
+  @include flexCenter();
+
+  transform: translate(-50%);
+
+  #chat-bar {
+    font-size: 1.1rem;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    width: 30vw;
+    height: 4rem;
+
+    resize: none;
+
+    outline: none;
+    border: solid 3px rgba(133, 133, 133, 0.658);
+
+    padding-inline: 10px;
+    padding-block: 8px;
+  }
+
+  .sendBtn {
+    position: absolute;
+    bottom: 0px;
+    right: 1px;
+    width: 80px;
+    height: 30px;
+    border: none;
+    border-top-left-radius: 10px;
+    color: rgb(134, 134, 134);
+
+    &.active {
+      color: black;
+      background-color: rgb(252, 202, 144);
+    }
+  }
+}
+
 .bottom-section {
   width: 100vw;
-  height : 33vh;
-  background-color: #EDF6E5;
+  height: 33vh;
+  background-color: #edf6e5;
 
-@include flexCenter();
-
-textarea{
-  position: fixed;
-  bottom: 5rem;
-
-  width:30vw;
-
-  padding: 10px;
-  resize: none;
-
-  border-radius: 20px;
-
-  outline: none;
-}
+  @include flexCenter();
 
   .current-word {
     display: flex;

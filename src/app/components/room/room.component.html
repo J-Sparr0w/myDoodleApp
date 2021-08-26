@@ -9,12 +9,28 @@
       <app-chat></app-chat>
     </div>
   </div>
+  <div class="chat-bar-section" *ngIf="!isCurrentPlayer">
+    <textarea
+      name="chat-bar"
+      id="chat-bar"
+      cols="20"
+      rows="1"
+      placeholder="chat here...."
+      (input)="isTyping = true"
+      #chatBar
+    ></textarea>
+    <button
+      class="sendBtn"
+      [class.active]="isTyping"
+      (click)="sendMessage(chatBar.value)"
+    >
+      send
+    </button>
+  </div>
 
   <div class="bottom-section">
     <div class="current-word">
       <h2 *ngFor="let letter of word">{{ letter }}</h2>
     </div>
-    <textarea name="text" id="text" cols="70" rows="3"></textarea>
-
   </div>
 </div>

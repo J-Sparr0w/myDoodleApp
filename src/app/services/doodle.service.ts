@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class DoodleService {
   private doodle = this.fs.doc("doodles/pGFdW3ogObPinYcJG2pD");
 
   constructor(
-    private fs:AngularFirestore
+    private fs: AngularFirestore,
+    private db: AngularFireDatabase
   ) { }
 
   updateDB(dataURI:string) {

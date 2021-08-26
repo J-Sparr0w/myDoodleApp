@@ -59,6 +59,17 @@ export class ChatComponent implements AfterViewInit {
     //   }
     // )
 
+
+//     this.chatService.getChatDb().subscribe(
+//       (data) => {
+//         console.log(data);
+//         data.forEach((messageReceived) => {
+//           console.log(messageReceived);
+//           this.chats.push(messageReceived);
+//         })
+//   }
+// )
+
     this.chatMessages.changes.subscribe(
       (changes: QueryList<ElementRef>) => {
         changes.last.nativeElement.scrollIntoView({behavior:'smooth'})

@@ -11,7 +11,8 @@ export const environment = {
     storageBucket: "doodle-doo-app.appspot.com",
     messagingSenderId: "744157882387",
     appId: "1:744157882387:web:ac6ce1454aa5857ecbf7e6",
-    measurementId: "G-CQ2PYNRCBL"
+    measurementId: "G-CQ2PYNRCBL",
+  databaseURL : "https://doodle-doo-app-default-rtdb.europe-west1.firebasedatabase.app"
   }
 };
 
