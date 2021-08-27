@@ -12,7 +12,7 @@ export class AvatarCardComponent implements OnInit {
   hasSelectedAvatar = false;
   selectedAvatar?: string;
 
-  @Output() selectionMade = new EventEmitter<boolean>();
+  @Output() selectionMade = new EventEmitter<string>();
 
   constructor() { }
 
@@ -24,7 +24,7 @@ export class AvatarCardComponent implements OnInit {
 
     this.hasSelectedAvatar = true;
     this.selectedAvatar = avatar;
-    this.selectionMade.emit(true);
+    this.selectionMade.emit(avatar);
     return avatar;
   }
 }

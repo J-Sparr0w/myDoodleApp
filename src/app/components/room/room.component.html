@@ -1,7 +1,7 @@
 <div class="container">
   <div class="doodle">
     <div class="doodle-area">
-      <app-canvas *ngIf="isCurrentPlayer" [link]="linkId"></app-canvas>
+      <app-canvas *ngIf="isCurrentPlayer"></app-canvas>
       <app-feedback-canvas *ngIf="!isCurrentPlayer"></app-feedback-canvas>
     </div>
 
@@ -22,7 +22,7 @@
     <button
       class="sendBtn"
       [class.active]="isTyping"
-      (click)="sendMessage(chatBar.value)"
+      (click)="sendMessage(chatBar.value); chatBar.value='';"
     >
       send
     </button>

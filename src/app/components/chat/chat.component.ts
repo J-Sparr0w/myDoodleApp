@@ -60,15 +60,17 @@ export class ChatComponent implements AfterViewInit {
     // )
 
 
-//     this.chatService.getChatDb().subscribe(
-//       (data) => {
-//         console.log(data);
-//         data.forEach((messageReceived) => {
-//           console.log(messageReceived);
-//           this.chats.push(messageReceived);
-//         })
-//   }
-// )
+    this.chatService.getChatDb().subscribe(
+      (data:Chat[]) => {
+        console.log(data);
+        const latestMessage = data.length-1;
+        this.chats.push(data[latestMessage]);
+        // data.forEach((messageReceived:Chat) => {
+        //   console.log(messageReceived);
+        //   this.chats.push(messageReceived);
+        // })
+  }
+)
 
     this.chatMessages.changes.subscribe(
       (changes: QueryList<ElementRef>) => {

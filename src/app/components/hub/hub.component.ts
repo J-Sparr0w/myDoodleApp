@@ -11,16 +11,27 @@ export class HubComponent implements OnInit {
   fullLink = "www.linkid.com/"
   hasSelectedAvatar?: boolean;
   hasSelectedUsername?: boolean;
+  selectedImgUrl!: string;
+  selectedUsername!: string;
   private userId!: string;
 
 
-  constructor(private hubService:HubService) { }
+  constructor(private _hubService:HubService) { }
 
   ngOnInit(): void {
   }
 
-  enableLink(value:boolean) {
+  enableLink(avatar:string) {
     this.hasSelectedAvatar = true;
+    this.selectedImgUrl = avatar;
+
+    if (this.hasSelectedUsername)
+    this._hubService.setUserInfo({
+      userId: this.userId,
+      username: this.selectedUsername,
+      isHost: true,
+      imgUrl:this.selectedImgUrl
+    });
   }
 
 
@@ -47,7 +58,7 @@ export class HubComponent implements OnInit {
     this.fullLink = "www.linkid.com/";
     this.linkId = stringArr.join('-');
     this.fullLink += this.linkId;
- return  this.hubService.docId = this.linkId;
+ return  this.linkId;
   }
 
   copyLink() {
@@ -61,18 +72,25 @@ export class HubComponent implements OnInit {
     }
 
  addUsername(value: string) {
-     this.createUID(4, value);
+   this.createUID(4, value);
 
-    this.hubService.user = {
-      userId: this.userId,
-      username: value,
-      isHost:true
-    }
+   this.hasSelectedUsername = true;
+   this.selectedUsername = value;
 
-    this.hasSelectedUsername = true;
+   if (!this.selectedImgUrl ) return;
+
+
+   this._hubService.setUserInfo({
+    userId: this.userId,
+    username: value,
+    isHost: true,
+    imgUrl:this.selectedImgUrl
+  });
+
+
   }
 
   joinRoom() {
-    this.hubService.joinLink();
+    this._hubService.joinLink(this.linkId!);
   }
 }

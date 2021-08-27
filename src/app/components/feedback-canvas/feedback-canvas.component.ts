@@ -20,12 +20,10 @@ export class FeedbackCanvasComponent implements AfterViewInit {
     this.setSize();
 
 
-    // this.doodleService.loadDoodle().subscribe(
-    //   docs => {
-    //     docs.forEach(doc => {
-    //       this.updateDrawing(doc.src);
-    //     })
-    //   })
+    this.doodleService.loadDoodle().subscribe(
+      doodles => {
+        doodles[doodles.length - 1];
+      })
 
   }
 

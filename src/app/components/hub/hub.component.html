@@ -3,18 +3,23 @@
 
   <!-- menu -->
   <div class="menu">
-
-<!-- username selection -->
+    <!-- username selection -->
     <div class="name-selection">
       <h2>Enter A Username</h2>
-      <input type="text" name="username" id="username" #username (input)="addUsername(username.value)">
+      <input
+        type="text"
+        name="username"
+        id="username"
+        #username
+        (input)="addUsername(username.value)"
+      />
     </div>
     <!--  -->
     <!-- link generation -->
     <div
       [ngClass]="{
         'create-link': true,
-        enabled: (this.hasSelectedAvatar&&hasSelectedUsername),
+        enabled: this.hasSelectedAvatar && hasSelectedUsername,
         created: linkId
       }"
       (click)="createUID(2)"
@@ -24,7 +29,7 @@
     <!--  -->
 
     <!-- link -->
-    <div class="link" >
+    <div class="link">
       <span #linkRef id="link-span">{{ fullLink }} </span>
       <div class="copy-btn" (click)="copyLink()">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">

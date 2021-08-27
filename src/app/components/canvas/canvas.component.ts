@@ -1,4 +1,4 @@
-import { ElementRef, Input, Renderer2 } from '@angular/core';
+import { ElementRef,  Renderer2 } from '@angular/core';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { DoodleService } from 'src/app/services/doodle.service';
@@ -20,7 +20,6 @@ export class CanvasComponent implements AfterViewInit {
   line_width = 10;
   canvasImg = [""];
   canvasSubscription?: Subscription;
-  @Input() link!: string;
 
 
   constructor(
@@ -30,7 +29,6 @@ export class CanvasComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.doodleService.linkId = this.link;
 
     this.cx = this.canvas.nativeElement.getContext('2d',{alpha:false});
     this.setSize();
@@ -54,7 +52,7 @@ export class CanvasComponent implements AfterViewInit {
 
 
 
-    //Enable touch features only if touchpoints greater than 0
+    //Enable touch features only if touch-points greater than 0
     //touch events will trigger mouse events
     if (this.touchPoints) {
 
@@ -121,7 +119,7 @@ export class CanvasComponent implements AfterViewInit {
     y = Y-this.canvas.nativeElement.offsetTop;
 
     /*
-    if normalising is required
+    if normalizing is required
     let bounds = this.canvas.nativeElement.getBoundingClientRect();
     x /= bounds.width;
     y /= bounds.height;

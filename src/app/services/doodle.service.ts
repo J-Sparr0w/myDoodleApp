@@ -7,22 +7,28 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class DoodleService {
 
-  linkId!: string;
+  linkId = JSON.parse(sessionStorage.getItem('roomLink')!);
   // private doodle = this.fs.doc(`doodles/${this.linkId}`);
-  private doodle = this.fs.doc("doodles/pGFdW3ogObPinYcJG2pD");
+  // private doodle = this.fs.doc("doodles/pGFdW3ogObPinYcJG2pD");
+  private _doodles=this._db.list(`doodleRoom/${this.linkId}/doodles`)
 
   constructor(
     private fs: AngularFirestore,
-    private db: AngularFireDatabase
+    private _db: AngularFireDatabase
   ) { }
 
-  updateDB(dataURI:string) {
+  updateDB(dataURI: string) {
+    if (!this.linkId) {
+      console.log("getting linkId again from session storage");
+      this.linkId = JSON.parse(sessionStorage.getItem('roomLink')!);
+    }
     console.log("updateDB");
-    // this.doodle.collection('ImageInfo').add({ src: dataURI });
+    // this._doodles.push({ src: dataURI });
   }
 
-  // loadDoodle() {
-  //  return this.doodle.collection('ImageInfo').valueChanges();
-  // }
+  loadDoodle() {
+  //  return this._doodles.collection('ImageInfo').valueChanges();
+   return this._doodles.valueChanges();
+  }
 
 }

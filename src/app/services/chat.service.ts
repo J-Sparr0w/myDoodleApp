@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Chat } from '../models/chat';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -11,13 +10,11 @@ export class ChatService {
   user = {
    name:"arj",
   }
-  linkId = "pGFdW3ogObPinYcJG2pD";
-  private _chatMessages = this.fs.collection<Chat>(`doodles/${this.linkId}/chats`);
-  private _chatDb = this.db.list<Chat>(`doodleRooms/chats`);
+  linkId = JSON.parse(sessionStorage.getItem('roomLink')!);
+  private _chatDb = this._db.list<Chat>(`doodleRooms/${this.linkId}/chats`);
 
     constructor(
-      private fs: AngularFirestore,
-      private db: AngularFireDatabase
+      private _db: AngularFireDatabase
   ) { }
 
   // getChat() :Observable<Chat[]>{
@@ -32,7 +29,12 @@ export class ChatService {
     return this._chatDb.valueChanges();
   }
 
-  addNewMessage(latestMessage:Chat) {
-    return this._chatDb.push(latestMessage);
+  addNewMessage(latestMessage: Chat) {
+    if (!this.linkId)
+      return console.log("no linkId for chat service")
+
+    console.log(this.linkId);
+    console.log("message sent");
+    // return this._chatDb.push(latestMessage);
   }
 }
