@@ -26,7 +26,7 @@ export class ChatService {
   }
 
   getChatDb() {
-    return this._chatDb.valueChanges();
+    // return this._chatDb.valueChanges();
   }
 
   addNewMessage(latestMessage: Chat) {

@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, Renderer2, ViewChildren } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Chat } from 'src/app/models/chat';
 import { ChatService } from 'src/app/services/chat.service';
 
@@ -7,7 +8,7 @@ import { ChatService } from 'src/app/services/chat.service';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements AfterViewInit {
+export class ChatComponent implements AfterViewInit,OnDestroy {
   @ViewChildren('chatMessages') chatMessages!: QueryList<ElementRef>;
 
   chats:Chat[] = [
@@ -38,7 +39,8 @@ export class ChatComponent implements AfterViewInit {
     }
   ];
   userName = this.chatService.user.name;
-
+  chatSubscription!: Subscription;
+  chatTemplateSubscription!: Subscription;
 
   constructor(
     private chatService: ChatService,
@@ -47,45 +49,30 @@ export class ChatComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    // this.chatService.getChat().subscribe(
-    //   (data) => {
-    //    data.forEach(chat => {
-    //      this.chats.push(chat);
-    //      console.log(this.chats);
-    //     });
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // )
 
 
-    this.chatService.getChatDb().subscribe(
-      (data:Chat[]) => {
-        console.log(data);
-        const latestMessage = data.length-1;
-        this.chats.push(data[latestMessage]);
-        // data.forEach((messageReceived:Chat) => {
-        //   console.log(messageReceived);
-        //   this.chats.push(messageReceived);
-        // })
-  }
-)
 
-    this.chatMessages.changes.subscribe(
+//     this.chatSubscription=   this.chatService.getChatDb().subscribe(
+//       (data:Chat[]) => {
+//         console.log(data);
+//         const latestMessage = data.length-1;
+//         this.chats.push(data[latestMessage]);
+
+//   }
+// )
+
+  this.chatTemplateSubscription=  this.chatMessages.changes.subscribe(
       (changes: QueryList<ElementRef>) => {
         changes.last.nativeElement.scrollIntoView({behavior:'smooth'})
       }
     )
-    // setInterval(() => {
-    //   this.chats.push({
-    //     sender: "arj",
-    //     message: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti, aperiam.That was nice",
-    //     senderImg: "./../../assets/images/fox.jpg"
-    //   })
-    // },Math.random()*3000);
-
 
   }
+
+  ngOnDestroy() {
+    this.chatSubscription.unsubscribe();
+    this.chatTemplateSubscription.unsubscribe();
+}
+
 
 }

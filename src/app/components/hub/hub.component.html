@@ -22,9 +22,9 @@
         enabled: this.hasSelectedAvatar && hasSelectedUsername,
         created: linkId
       }"
-      (click)="createUID(2)"
+      (click)="redirectedUser ? joinRoom() : createUID(2)"
     >
-      <h2>Create Game Room</h2>
+      <h2>{{ redirectedUser ? "Join" : "Create Game Room" }}</h2>
     </div>
     <!--  -->
 
@@ -43,18 +43,53 @@
           </g>
         </svg>
       </div>
+      <img
+        src="./../../../assets/icons/arrow.svg"
+        alt=""
+        class="ready-btn link-created"
+        *ngIf="linkId"
+        (click)="joinRoom()"
+      />
     </div>
     <!--  -->
   </div>
+
   <!--  -->
 
-  <div class="join" (click)="joinRoom()">
-    <h3>Invite friends and Join the game room</h3>
+  <div class="waiting-area">
+    <!-- join with link -->
 
-    <img src="./../../../assets/icons/arrow.svg" alt="" />
-
-    <!-- joinbtn -->
-    <div class="join-btn" *ngIf="linkId"><Span>Join</Span></div>
-    <!--   -->
+    <div class="join-with-link" *ngIf="!redirectedUser">
+      <h2>Or join a room by entering link....</h2>
+      <input
+        type="text"
+        (input)="linkInput(linkInputRef.value)"
+        #linkInputRef
+      />
+      <img
+        src="./../../../assets/icons/arrow.svg"
+        alt=""
+        class="ready-btn link-entered"
+        (click)="joinRoom(linkInputRef.value)"
+        *ngIf="hasEnteredLink && this.hasSelectedAvatar && hasSelectedUsername"
+      />
+    </div>
+    <!--  -->
+    <!-- waiting room for players -->
+    <div
+      class="waiting-box"
+      [ngStyle]="{ background: playerCount ? 'white' : 'transparent' }"
+    >
+      <h2>
+        {{ playerCount ? playerCount + " players joined....." : "" }}
+      </h2>
+      <div class="waiting-players">
+        <div class="players" *ngFor="let player of players">
+          <img src="{{ player.imgUrl }}" alt="" />
+          <p>{{ player.username }}</p>
+        </div>
+      </div>
+    </div>
+    <!--  -->
   </div>
 </div>

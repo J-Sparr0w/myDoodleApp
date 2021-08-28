@@ -15,6 +15,7 @@ export class HubService {
 
   private _linkId = "";
 
+
   constructor(
     private _db: AngularFireDatabase,
   ) { }
@@ -29,7 +30,7 @@ export class HubService {
   }
 
   joinLink(link:string) {
-    if (!this.user||!this.user.isHost)
+    if (!this.user)
       return;
     // console.log(this.user.userId, this.user.username);
 
@@ -39,11 +40,23 @@ export class HubService {
      const _players = this._db.list(_playerRef);
 
 
-    if (!this._linkId || !this.user.userId) return;
+     if (!this._linkId || !this.user.userId) return;
 
-    // _players.push(this.user);
-    sessionStorage.setItem('roomLink',JSON.stringify(this._linkId))
-    sessionStorage.setItem('isLoggedIn',JSON.stringify(true))
-    console.log("Room Created");
+     // _players.push(this.user);
+     sessionStorage.setItem('roomLink',JSON.stringify(this._linkId))
+     sessionStorage.setItem('isLoggedIn',JSON.stringify(true))
+     console.log("Room Created");
+    }
+
+  getPlayerCount() {
+    // function to retrieve the player count from database to display in the waiting area.
+
+    if (!this.user || !this._linkId)
+      return;
+
+  const _playerRef = `doodleRooms/${this._linkId}/users`;
+  const playerCount = this._db.list<User>(_playerRef);
+
+    return playerCount.valueChanges();
   }
 }

@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { DoodleService } from 'src/app/services/doodle.service';
 
 @Component({
@@ -6,9 +7,10 @@ import { DoodleService } from 'src/app/services/doodle.service';
   templateUrl: './feedback-canvas.component.html',
   styleUrls: ['./feedback-canvas.component.scss']
 })
-export class FeedbackCanvasComponent implements AfterViewInit {
+export class FeedbackCanvasComponent implements AfterViewInit, OnDestroy {
   @ViewChild('spectatorView') canvas!: ElementRef<HTMLCanvasElement>;
    private cx: any;
+  private doodleSub!: Subscription;
 
   constructor(
     private doodleService: DoodleService,
@@ -20,7 +22,7 @@ export class FeedbackCanvasComponent implements AfterViewInit {
     this.setSize();
 
 
-    this.doodleService.loadDoodle().subscribe(
+  this.doodleSub=  this.doodleService.loadDoodle().subscribe(
       doodles => {
         doodles[doodles.length - 1];
       })
@@ -44,4 +46,12 @@ export class FeedbackCanvasComponent implements AfterViewInit {
     })
 
   }
+
+
+  ngOnDestroy() {
+    this.doodleSub.unsubscribe();
+}
+
+
+
 }
