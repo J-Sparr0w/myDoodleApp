@@ -36,25 +36,35 @@ export class HubService {
 
 
      this._linkId = link;
-     const _playerRef = `doodleRooms/${this._linkId}/users`;
+     const _playerRef = `doodleRooms/${this._linkId}/players`;
      const _players = this._db.list(_playerRef);
 
 
      if (!this._linkId || !this.user.userId) return;
 
-     // _players.push(this.user);
+     _players.push(this.user);
+
+    // store data about room and player in session storage
      sessionStorage.setItem('roomLink',JSON.stringify(this._linkId))
      sessionStorage.setItem('isLoggedIn',JSON.stringify(true))
+    // storing playerData in sessionStorage
+    sessionStorage.setItem('userId', JSON.stringify(this.user.userId))
+     sessionStorage.setItem('username',JSON.stringify(this.user.username))
+     sessionStorage.setItem('imgUrl',JSON.stringify(this.user.imgUrl))
+     sessionStorage.setItem('isHost', JSON.stringify(this.user.isHost))
+
      console.log("Room Created");
     }
 
-  getPlayerCount() {
+  getPlayers(link:string) {
     // function to retrieve the player count from database to display in the waiting area.
+
+    this._linkId = link;
 
     if (!this.user || !this._linkId)
       return;
 
-  const _playerRef = `doodleRooms/${this._linkId}/users`;
+  const _playerRef = `doodleRooms/${this._linkId}/players`;
   const playerCount = this._db.list<User>(_playerRef);
 
     return playerCount.valueChanges();

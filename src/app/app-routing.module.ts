@@ -10,9 +10,11 @@ const routes: Routes = [
     path: "", redirectTo:"hub",pathMatch:"full"
 
   },
-   {path: "hub",component:HubComponent } ,
-   {path: "canvas",component:CanvasComponent } ,
-  {path:"room/:roomId", component:RoomComponent,canActivate:[AuthGuard]},
+  {
+    path: "hub", component: HubComponent,
+
+  },
+    {path:"hub/room/:roomId", component:RoomComponent,canActivate:[AuthGuard]},
   {path:"**", component:HubComponent}
 ];
 

@@ -16,6 +16,7 @@ import { HubService } from './services/hub.service';
 import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
 import { RoomService } from './services/room.service';
 import { FeedbackCanvasComponent } from './components/feedback-canvas/feedback-canvas.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FeedbackCanvasComponent } from './components/feedback-canvas/feedback-c
     HubComponent,
     AvatarCardComponent,
     FeedbackCanvasComponent,
+    LeaderboardComponent,
   ],
   imports: [
     BrowserModule,

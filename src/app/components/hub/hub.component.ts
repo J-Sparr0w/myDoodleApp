@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { HubService } from 'src/app/services/hub.service';
 
@@ -9,9 +9,9 @@ import { HubService } from 'src/app/services/hub.service';
   templateUrl: './hub.component.html',
   styleUrls: ['./hub.component.scss']
 })
-export class HubComponent implements OnInit {
+export class HubComponent implements OnInit, OnDestroy {
   linkId?:string ;
-  fullLink = "www.linkid.com/"
+  fullLink = "localhost:4200.com/hub/room/"
   hasSelectedAvatar?: boolean;
   hasSelectedUsername?: boolean;
   selectedImgUrl!: string;
@@ -31,7 +31,6 @@ export class HubComponent implements OnInit {
   constructor(private _hubService:HubService, private _route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.playerCount = this.players.length;
 
     //if the user was redirected then the create game room button will not be enabled
     this.redirectedUser=this.checkForRoomId();
@@ -40,7 +39,6 @@ export class HubComponent implements OnInit {
   // function to check if the user was redirected to login page
   checkForRoomId() {
     const roomId = this._route.snapshot.queryParams.roomId;
-    console.log(`roomId in hub: ${roomId}`);
     if (roomId)
     {
       this.linkId = roomId;
@@ -49,6 +47,7 @@ export class HubComponent implements OnInit {
     }
     else
       return false;
+
 }
 
 
@@ -98,7 +97,7 @@ export class HubComponent implements OnInit {
     if (!this.linkId)
       return;
 
-      navigator.clipboard.writeText(this.linkId)
+      navigator.clipboard.writeText(this.fullLink)
       .then(
         ()=>console.log("copied")
         )
@@ -111,48 +110,56 @@ export class HubComponent implements OnInit {
    this.selectedUsername = value;
 
    if (!this.selectedImgUrl ) return;
-
-
-   this._hubService.setUserInfo({
-    userId: this.userId,
-    username: value,
-    isHost: true,
-    imgUrl:this.selectedImgUrl
-  });
   }
 
   // if link is entered manually
   linkInput(value: string) {
     // if www.link.com/9090-9090 is going to be the link,
     // the numbers at the end are checked to see if there are 8 digits and a "-"
-    const roomId = value.split('/')[1];
-
+    const lastIndex = value.split('/').length - 1;
+    const roomId= value.split('/')[lastIndex]
     if (!roomId)
-      return;
-    if (roomId.length != 9 || value.split('/').length != 2)
+    return;
+    if (roomId.length != 9 )
     {
       this.hasEnteredLink = false;
       return;
-      }
+    }
 
+    console.log(`input room Id: ${roomId}`)
     this.hasEnteredLink = true;
   }
 
   joinRoom(link?: string) {
 
+    this._hubService.setUserInfo({
+      userId: this.userId,
+      username: this.selectedUsername,
+      isHost: ((this.redirectedUser|| link)? false: true),
+      imgUrl:this.selectedImgUrl
+    });
+
     if (link) {
       // if there is link passed as argument then it was entered manually by the user
-      this.fullLink = link ;
-      this.linkId = link?.split('/')[1];
+      this.fullLink = link;
+      const lengthOfLinkArray = link.split('/').length-1;
+      this.linkId = link?.split('/')[lengthOfLinkArray];
+
     }
     this._hubService.joinLink(this.linkId!);
 
     // starts a subscription to display no. of players joined in the waiting area
-    this.playerCountSub = this._hubService.getPlayerCount()?.subscribe(
-      users => {
-        this.players = [...users]
-        this.playerCount = this.players.length;
-        }
+    this.playerCountSub = this._hubService.getPlayers(this.linkId!)?.subscribe(
+    //   users => {
+    //     this.players = [...users]
+    //     this.playerCount = this.players.length;
+    //     console.log('player count still running')
+    //     }
     )
+  }
+
+  ngOnDestroy() {
+    console.log("component destroyed")
+    this.playerCountSub?.unsubscribe;
   }
 }

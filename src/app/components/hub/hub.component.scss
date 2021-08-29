@@ -110,9 +110,9 @@ app-avatar-card {
     position: relative;
 
     #link-span {
-      padding: 5px 10px;
       display: inline-block;
-      width: 200px;
+      padding: 5px 10px;
+      width: 320px;
       border-radius: 3px;
       text-align: center;
       // background-color: rgb(203, 205, 209);
@@ -172,6 +172,16 @@ app-avatar-card {
   }
 
   .join-with-link {
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -10px;
+      left: 0px;
+      background-color: black;
+    }
+
     margin-top: 6.5vh;
     @include flexCenter();
     // flex: 0 1 50%;
@@ -256,6 +266,24 @@ app-avatar-card {
 
       img {
         border-radius: 50%;
+      }
+    }
+
+    .join-room {
+      margin-top: 20px;
+      width: 100px;
+
+      text-align: center;
+
+      padding: 10px;
+
+      cursor: pointer;
+
+      background-color: #fff;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: $orange;
       }
     }
   }

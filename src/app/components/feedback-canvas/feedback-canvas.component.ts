@@ -22,10 +22,11 @@ export class FeedbackCanvasComponent implements AfterViewInit, OnDestroy {
     this.setSize();
 
 
-  this.doodleSub=  this.doodleService.loadDoodle().subscribe(
-      doodles => {
-        doodles[doodles.length - 1];
-      })
+  // this.doodleSub=  this.doodleService.loadDoodle().subscribe(
+  //     doodles => {
+  //   const src=  doodles[doodles.length - 1].src;
+  //     this.updateDrawing(src)
+  //     })
 
   }
 

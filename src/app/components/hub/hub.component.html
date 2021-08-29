@@ -89,7 +89,11 @@
           <p>{{ player.username }}</p>
         </div>
       </div>
-    </div>
+      <div class="join-room" *ngIf="playerCount" [routerLink]="['room',linkId]" >Join Room {{linkId}}</div>
     <!--  -->
+    </div>
+
+    <!--  -->
+
   </div>
 </div>

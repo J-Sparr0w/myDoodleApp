@@ -15,8 +15,8 @@ constructor(public router:Router){}
     const roomLink = sessionStorage.getItem('roomLink');
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
 
-    console.log(route.paramMap.get('roomId'));
-    const roomId = parseInt(route.paramMap.get('roomId')!);
+    const roomId = route.paramMap.get('roomId')!;
+    console.log(`roomId in authGuard: ${roomId}`);
 
     if (!roomLink && !isLoggedIn) {
       console.log("route redirected")

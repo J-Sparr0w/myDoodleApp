@@ -1,4 +1,5 @@
 import { ElementRef,  Renderer2 } from '@angular/core';
+import { HostListener } from '@angular/core';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { interval, Subscription } from 'rxjs';
 import { DoodleService } from 'src/app/services/doodle.service';
@@ -25,7 +26,7 @@ export class CanvasComponent implements AfterViewInit {
   constructor(
     private renderer: Renderer2,
     private doodleService: DoodleService
-  ) { }
+  ) {  }
 
   ngAfterViewInit() {
 
@@ -38,17 +39,16 @@ export class CanvasComponent implements AfterViewInit {
     /*
     Setting Up rxjs intervals to convert and update the image data to the database an
     */
-   this.canvasSubscription= interval(100).pipe()
-      .subscribe(() => {
-        const canvasURI = this.canvas.nativeElement.toDataURL("image/png");
+  //  this.canvasSubscription= interval(100).pipe()
+  //     .subscribe(() => {
+  //       const canvasURI = this.canvas.nativeElement.toDataURL("image/png");
 
-        if (this.canvasImg[this.canvasImg.length - 1] == canvasURI)
-        return;
-
-        this.canvasImg.push(canvasURI);
-        this.doodleService.updateDB(canvasURI);
-        // this.canImg.nativeElement.src = canvasImg;
-      })
+  //       if (this.canvasImg[this.canvasImg.length - 1] == canvasURI)
+  //       return;
+  //       console.log("updating canvas in db");
+  //       this.canvasImg.push(canvasURI);
+  //       // this.doodleService.updateDB(canvasURI);
+  //     })
 
 
 
@@ -185,6 +185,8 @@ export class CanvasComponent implements AfterViewInit {
     this.cx.fillRect(0, 0, this.canvas.nativeElement.width, this.canvas.nativeElement.height);
   }
 
+  @HostListener('window:onunload')
+  @HostListener('window:beforeunload')
   ngOnDestroy() {
     this.canvasSubscription ? this.canvasSubscription.unsubscribe : console.log("no subscription found in canvas component");
   }

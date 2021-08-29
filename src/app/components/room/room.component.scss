@@ -10,16 +10,36 @@
 .doodle {
   height: 67vh;
   position: relative;
-  @include flexCenter();
-  background-color: $pink;
 
+  @include flexCenter();
   flex-grow: 0;
   flex-shrink: 0;
+
+  background-color: $pink;
 
   padding-block: 1rem;
 
   overflow-x: hidden;
   overflow-y: hidden;
+}
+
+.leader-board {
+  position: absolute;
+  left: 10px;
+  // top: 20px;
+  max-height: 67vh;
+
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(66, 66, 66);
+    border-radius: 10px;
+  }
+
 }
 
 .doodle-area {

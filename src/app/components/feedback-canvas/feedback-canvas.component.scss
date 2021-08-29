@@ -1,5 +1,9 @@
 @use "./../../../assets/abstracts/index" as *;
 
+canvas {
+  box-shadow: 5px 5px 10px rgba(97, 97, 97, 0.425);
+}
+
 .toolbar {
   position: fixed;
   width: 30rem;

@@ -1,0 +1,11 @@
+<div class="board">
+  <div class="title">
+    <h3>Players</h3>
+  </div>
+
+  <div class="player-tiles" *ngFor="let player of players">
+    <img src="{{ player.imgUrl }}" alt="player img" class="player-img" />
+    <p class="player-name">{{ player.username }}</p>
+    <p class="score">{{ player.score }}</p>
+  </div>
+</div>

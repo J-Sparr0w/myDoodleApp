@@ -2,6 +2,7 @@ export interface User
 {
   userId:string,
   username: string,
+  imgUrl: string,
   isHost?: boolean,
-  imgUrl:string
+  score?:number
 }
